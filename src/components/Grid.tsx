@@ -1,16 +1,15 @@
-import { AppState } from "../logic/app";
+import { useAppContext } from "../context/AppContext";
 import { Grid as GridType, Tile as TileType } from "../logic/game";
 
 type GridProps = {
   board: GridType;
-  player: AppState["player"];
 };
 
-export function Grid({ board, player }: GridProps) {
+export function Grid({ board }: GridProps) {
   return (
     <div className="flex flex-col">
       {board.map((row, rowIndex) => (
-        <Row player={player} row={row} index={rowIndex} key={rowIndex} />
+        <Row row={row} index={rowIndex} key={rowIndex} />
       ))}
     </div>
   );
@@ -19,10 +18,10 @@ export function Grid({ board, player }: GridProps) {
 type RowProps = {
   row: Array<TileType>;
   index: number;
-  player: AppState["player"];
 };
 
-function Row({ row, player, index }: RowProps) {
+function Row({ row, index }: RowProps) {
+  const { player } = useAppContext();
   return (
     <div className="flex justify-center">
       {row.map((tile, tileIndex) => (
@@ -62,5 +61,7 @@ function Tile({ tile, occupied }: TileProps) {
 }
 
 function Player() {
-  return "🦫";
+  const { player } = useAppContext();
+  player.facing;
+  return <span>🦫</span>;
 }

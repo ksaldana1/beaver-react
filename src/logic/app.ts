@@ -9,6 +9,7 @@ export type AppState = {
       x: number;
       y: number;
     };
+    facing: "LEFT" | "RIGHT";
   };
 };
 
@@ -35,11 +36,13 @@ export const reducer: Reducer<AppState, AppEvents> = (state, action) => {
         .with(DIRECTION.LEFT, () => {
           return produce(state, (draftState) => {
             draftState.player.position.x = draftState.player.position.x - 1;
+            draftState.player.facing = DIRECTION.LEFT;
           });
         })
         .with(DIRECTION.RIGHT, () => {
           return produce(state, (draftState) => {
             draftState.player.position.x = draftState.player.position.x + 1;
+            draftState.player.facing = DIRECTION.RIGHT;
           });
         })
         .with(DIRECTION.UP, () => {
