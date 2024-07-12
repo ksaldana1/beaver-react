@@ -14,9 +14,11 @@ export const COLORS = {
   SOIL_COLOR: "#4d3300",
 } as const;
 
+export type Color = ValueOf<typeof COLORS>;
+
 export type Tile = {
   text: string;
-  color: ValueOf<typeof COLORS>;
+  color: Color;
 };
 
 export type Grid = Array<Array<Tile>>;
