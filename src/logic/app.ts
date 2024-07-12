@@ -11,6 +11,7 @@ export type AppState = {
     };
     facing: "LEFT" | "RIGHT";
   };
+  dialogue?: string;
 };
 
 export const DIRECTION = {

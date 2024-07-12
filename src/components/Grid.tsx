@@ -7,7 +7,7 @@ type GridProps = {
 
 export function Grid({ board }: GridProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pt-4">
       {board.map((row, rowIndex) => (
         <Row row={row} index={rowIndex} key={rowIndex} />
       ))}
@@ -43,7 +43,7 @@ type TileProps = {
   occupied?: boolean;
 };
 
-const TILE_SIZE = 30;
+const TILE_SIZE = 25;
 
 function Tile({ tile, occupied }: TileProps) {
   return (

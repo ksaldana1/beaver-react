@@ -6,10 +6,12 @@ import { DEFAULT_GRID } from "./logic/game";
 import { DIRECTION, Direction, reducer } from "./logic/app";
 import { Keyboard } from "./components/Keyboard";
 import { AppContext } from "./context/AppContext";
+import { Dialogue } from "./components/Dialogue";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, {
     player: { position: { x: 3, y: 4 }, facing: "RIGHT" },
+    dialogue: "this is our text and stuff",
   });
 
   // hotkeys for player movement
@@ -35,6 +37,7 @@ function App() {
     <AppContext.Provider value={state}>
       <div className="h-full flex flex-col items-center gap-5">
         <Grid board={DEFAULT_GRID} />
+        <Dialogue />
         <Keyboard
           onClick={(direction: Direction) => {
             dispatch({
