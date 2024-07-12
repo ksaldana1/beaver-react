@@ -11,31 +11,30 @@ type GridProps = {
 
 export function Grid({ board, player }: GridProps) {
   return (
-    <div
-      style={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-      }}
-    >
-      {board.map((row, rowIndex) => {
-        return (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {row.map((tile, tileIndex) => (
-              <Tile
-                tile={tile}
-                occupied={player.x === rowIndex && player.y === tileIndex}
-              />
-            ))}
-          </div>
-        );
-      })}
+    <div className="h-full flex flex-col justify-center">
+      {board.map((row, rowIndex) => (
+        <Row player={player} row={row} index={rowIndex} key={rowIndex} />
+      ))}
+    </div>
+  );
+}
+
+type RowProps = {
+  row: Array<TileType>;
+  index: number;
+  player: PlayerType;
+};
+
+function Row({ row, player, index }: RowProps) {
+  return (
+    <div className="flex justify-center">
+      {row.map((tile, tileIndex) => (
+        <Tile
+          key={tileIndex}
+          tile={tile}
+          occupied={player.x === index && player.y === tileIndex}
+        />
+      ))}
     </div>
   );
 }
@@ -51,13 +50,11 @@ const TILE_SIZE = 25;
 function Tile({ tile, occupied }: TileProps) {
   return (
     <div
+      className="flex items-center justify-center"
       style={{
         height: TILE_SIZE,
         width: TILE_SIZE,
         backgroundColor: tile.color,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
       }}
     >
       {occupied ? <Player /> : tile.text}

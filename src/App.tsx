@@ -9,11 +9,7 @@ function App() {
 
   // setup hotkeys for moving the player
   return (
-    <div
-      style={{
-        height: "100%",
-      }}
-    >
+    <div className="h-full">
       <Grid player={player} board={DEFAULT_GRID} />
     </div>
   );
