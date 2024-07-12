@@ -1,4 +1,4 @@
-import { AppState } from "../App";
+import { AppState } from "../logic/app";
 import { Grid as GridType, Tile as TileType } from "../logic/game";
 
 type GridProps = {
