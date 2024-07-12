@@ -1,12 +1,9 @@
-import {
-  Grid as GridType,
-  Player as PlayerType,
-  Tile as TileType,
-} from "../logic/game";
+import { AppState } from "../App";
+import { Grid as GridType, Tile as TileType } from "../logic/game";
 
 type GridProps = {
   board: GridType;
-  player: PlayerType;
+  player: AppState["player"];
 };
 
 export function Grid({ board, player }: GridProps) {
@@ -22,7 +19,7 @@ export function Grid({ board, player }: GridProps) {
 type RowProps = {
   row: Array<TileType>;
   index: number;
-  player: PlayerType;
+  player: AppState["player"];
 };
 
 function Row({ row, player, index }: RowProps) {
@@ -32,7 +29,9 @@ function Row({ row, player, index }: RowProps) {
         <Tile
           key={tileIndex}
           tile={tile}
-          occupied={player.x === index && player.y === tileIndex}
+          occupied={
+            player.position.x === tileIndex && player.position.y === index
+          }
         />
       ))}
     </div>
@@ -45,7 +44,7 @@ type TileProps = {
   occupied?: boolean;
 };
 
-const TILE_SIZE = 25;
+const TILE_SIZE = 30;
 
 function Tile({ tile, occupied }: TileProps) {
   return (
