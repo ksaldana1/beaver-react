@@ -8,6 +8,7 @@ export function Keyboard({
 }: {
   onClick: (direction: Direction) => void;
 }) {
+  console.log(onClick);
   return (
     <>
       <div className="flex justify-center">

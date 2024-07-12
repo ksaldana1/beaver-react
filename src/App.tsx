@@ -16,10 +16,10 @@ function App() {
     const listener = (event: KeyboardEvent) => {
       const key = event.key;
       const direction = match(key)
-        .with("ArrowLeft", () => DIRECTION.LEFT)
-        .with("ArrowRight", () => DIRECTION.RIGHT)
-        .with("ArrowUp", () => DIRECTION.UP)
-        .with("ArrowDown", () => DIRECTION.DOWN)
+        .with("ArrowLeft", "a", () => DIRECTION.LEFT)
+        .with("ArrowRight", "d", () => DIRECTION.RIGHT)
+        .with("ArrowUp", "w", () => DIRECTION.UP)
+        .with("ArrowDown", "s", () => DIRECTION.DOWN)
         .otherwise(() => null);
 
       if (direction) {
