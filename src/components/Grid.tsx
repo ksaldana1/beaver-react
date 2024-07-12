@@ -11,7 +11,14 @@ type GridProps = {
 
 export function Grid({ board, player }: GridProps) {
   return (
-    <div style={{ height: "100%" }} className="grid-container">
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       {board.map((row, rowIndex) => {
         return (
           <div
@@ -39,7 +46,7 @@ type TileProps = {
   occupied?: boolean;
 };
 
-const TILE_SIZE = 20;
+const TILE_SIZE = 25;
 
 function Tile({ tile, occupied }: TileProps) {
   return (
@@ -48,6 +55,9 @@ function Tile({ tile, occupied }: TileProps) {
         height: TILE_SIZE,
         width: TILE_SIZE,
         backgroundColor: tile.color,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       {occupied ? <Player /> : tile.text}

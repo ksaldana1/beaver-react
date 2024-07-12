@@ -5,6 +5,9 @@ import { DEFAULT_GRID, Player } from "./logic/game";
 
 function App() {
   const [player, setPlayer] = useState<Player>({ x: 4, y: 4 });
+  // a bunch of state
+
+  // setup hotkeys for moving the player
   return (
     <div
       style={{
