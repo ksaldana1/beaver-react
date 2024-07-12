@@ -14,6 +14,11 @@ export class Scene {
   }
 }
 
+export type Player = {
+  x: number;
+  y: number;
+};
+
 function rep(value, times) {
   return Array.from({ length: times }, () => value);
 }

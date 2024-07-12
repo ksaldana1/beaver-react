@@ -1,15 +1,17 @@
+import { useState } from "react";
 import "./App.css";
 import { Grid } from "./components/Grid";
-import { DEFAULT_GRID } from "./logic/game";
+import { DEFAULT_GRID, Player } from "./logic/game";
 
 function App() {
+  const [player, setPlayer] = useState<Player>({ x: 4, y: 4 });
   return (
     <div
       style={{
         height: "100%",
       }}
     >
-      <Grid board={DEFAULT_GRID} />
+      <Grid player={player} board={DEFAULT_GRID} />
     </div>
   );
 }

@@ -1,13 +1,18 @@
-import { Grid as GridType, Tile as TileType } from "../logic/game";
+import {
+  Grid as GridType,
+  Player as PlayerType,
+  Tile as TileType,
+} from "../logic/game";
 
 type GridProps = {
   board: GridType;
+  player: PlayerType;
 };
 
-export function Grid({ board }: GridProps) {
+export function Grid({ board, player }: GridProps) {
   return (
     <div style={{ height: "100%" }} className="grid-container">
-      {board.map((row) => {
+      {board.map((row, rowIndex) => {
         return (
           <div
             style={{
@@ -15,8 +20,11 @@ export function Grid({ board }: GridProps) {
               justifyContent: "center",
             }}
           >
-            {row.map((tile) => (
-              <Tile tile={tile} />
+            {row.map((tile, tileIndex) => (
+              <Tile
+                tile={tile}
+                occupied={player.x === rowIndex && player.y === tileIndex}
+              />
             ))}
           </div>
         );
@@ -27,11 +35,13 @@ export function Grid({ board }: GridProps) {
 
 type TileProps = {
   tile: TileType;
+  // is player on this Tile
+  occupied?: boolean;
 };
 
 const TILE_SIZE = 20;
 
-function Tile({ tile }: TileProps) {
+function Tile({ tile, occupied }: TileProps) {
   return (
     <div
       style={{
@@ -40,7 +50,11 @@ function Tile({ tile }: TileProps) {
         backgroundColor: tile.color,
       }}
     >
-      {tile.text}
+      {occupied ? <Player /> : tile.text}
     </div>
   );
+}
+
+function Player() {
+  return "🦫";
 }
