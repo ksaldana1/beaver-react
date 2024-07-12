@@ -62,6 +62,13 @@ function Tile({ tile, occupied }: TileProps) {
 
 function Player() {
   const { player } = useAppContext();
-  player.facing;
-  return <span>🦫</span>;
+  return (
+    <span
+      style={{
+        transform: player.facing === "LEFT" ? "scaleX(1)" : "scaleX(-1)",
+      }}
+    >
+      🦫
+    </span>
+  );
 }
