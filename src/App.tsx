@@ -27,34 +27,34 @@ type AppEvents = {
 };
 
 const reducer: Reducer<AppState, AppEvents> = (state, action) => {
-  if (action.type === "USER_MOVE") {
-    const { direction } = action.payload;
-    if (direction === DIRECTION.LEFT) {
-      return produce(state, (draftState) => {
-        draftState.player.position.x = draftState.player.position.x - 1;
-      });
-    }
-
-    if (direction === DIRECTION.RIGHT) {
-      return produce(state, (draftState) => {
-        draftState.player.position.x = draftState.player.position.x + 1;
-      });
-    }
-
-    if (direction === DIRECTION.UP) {
-      return produce(state, (draftState) => {
-        draftState.player.position.y = draftState.player.position.y - 1;
-      });
-    }
-
-    if (direction === DIRECTION.DOWN) {
-      return produce(state, (draftState) => {
-        draftState.player.position.y = draftState.player.position.y + 1;
-      });
-    }
-  }
-
-  return state;
+  return match(action)
+    .returnType<AppState>()
+    .with({ type: "USER_MOVE" }, (action) => {
+      const { direction } = action.payload;
+      return match(direction)
+        .with(DIRECTION.LEFT, () => {
+          return produce(state, (draftState) => {
+            draftState.player.position.x = draftState.player.position.x - 1;
+          });
+        })
+        .with(DIRECTION.RIGHT, () => {
+          return produce(state, (draftState) => {
+            draftState.player.position.x = draftState.player.position.x + 1;
+          });
+        })
+        .with(DIRECTION.UP, () => {
+          return produce(state, (draftState) => {
+            draftState.player.position.y = draftState.player.position.y - 1;
+          });
+        })
+        .with(DIRECTION.DOWN, () => {
+          return produce(state, (draftState) => {
+            draftState.player.position.y = draftState.player.position.y + 1;
+          });
+        })
+        .exhaustive();
+    })
+    .exhaustive();
 };
 
 function App() {
