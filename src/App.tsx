@@ -11,7 +11,7 @@ function App() {
     player: { position: { x: 3, y: 4 } },
   });
 
-  // a bunch of state
+  // hotkeys for player movement
   useEffect(() => {
     const listener = (event: KeyboardEvent) => {
       const key = event.key;
@@ -30,7 +30,6 @@ function App() {
     return () => document.removeEventListener("keydown", listener);
   }, []);
 
-  // setup hotkeys for moving the player
   return (
     <div className="h-full flex flex-col items-center gap-5">
       <Grid player={state.player} board={DEFAULT_GRID} />
