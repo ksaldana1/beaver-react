@@ -1,3 +1,5 @@
+import { ValueOf } from "type-fest";
+
 export type Player = {
   x: number;
   y: number;
@@ -14,7 +16,7 @@ export const COLORS = {
 
 export type Tile = {
   text: string;
-  color: (typeof COLORS)[keyof typeof COLORS];
+  color: ValueOf<typeof COLORS>;
 };
 
 export type Grid = Array<Array<Tile>>;

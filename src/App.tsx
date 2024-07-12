@@ -83,9 +83,31 @@ function App() {
 
   // setup hotkeys for moving the player
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col items-center gap-5">
       <Grid player={state.player} board={DEFAULT_GRID} />
+      <Keyboard />
     </div>
+  );
+}
+
+function Keyboard({
+  onClick,
+}: {
+  onClick: (direction: (typeof DIRECTION)[keyof typeof DIRECTION]) => void;
+}) {
+  const buttonClasses =
+    "text-2xl bg-green-600 text-white rounded-md cursor-pointer w-36 h-10";
+  return (
+    <>
+      <div className="flex justify-center">
+        <button className={buttonClasses}>↑</button>
+      </div>
+      <div className="flex justify-center gap-4">
+        <button className={buttonClasses}>←</button>
+        <button className={buttonClasses}>↓</button>
+        <button className={buttonClasses}>→</button>
+      </div>
+    </>
   );
 }
 

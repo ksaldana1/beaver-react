@@ -8,7 +8,7 @@ type GridProps = {
 
 export function Grid({ board, player }: GridProps) {
   return (
-    <div className="h-full flex flex-col justify-center">
+    <div className="flex flex-col">
       {board.map((row, rowIndex) => (
         <Row player={player} row={row} index={rowIndex} key={rowIndex} />
       ))}
