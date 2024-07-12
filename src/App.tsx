@@ -64,7 +64,7 @@ function App() {
 
   // a bunch of state
   useEffect(() => {
-    const listener = document.addEventListener("keydown", (event) => {
+    const listener = (event: KeyboardEvent) => {
       const key = event.key;
       const direction = match(key)
         .with("ArrowLeft", () => DIRECTION.LEFT)
@@ -76,9 +76,9 @@ function App() {
       if (direction) {
         dispatch({ type: "USER_MOVE", payload: { direction } });
       }
-
-      // todo: return cleanup
-    });
+    };
+    document.addEventListener("keydown", listener);
+    return () => document.removeEventListener("keydown", listener);
   }, []);
 
   // setup hotkeys for moving the player
